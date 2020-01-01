@@ -88,10 +88,7 @@ export const visitJsxElementWithCssProp = (
       prop => prop.name && getIdentifierText(prop.name) !== CSS_PROP
     ),
     // Reference style via className
-    ts.createJsxAttribute(
-      ts.createIdentifier('className'),
-      ts.createJsxExpression(undefined, ts.createStringLiteral(className))
-    ),
+    ts.createJsxAttribute(ts.createIdentifier('className'), ts.createStringLiteral(className)),
     // Add a style prop if css variables are applied
     cssVariables.length
       ? ts.createJsxAttribute(
@@ -101,7 +98,7 @@ export const visitJsxElementWithCssProp = (
             ts.createObjectLiteral(
               cssVariables.map(cssVariable =>
                 ts.createPropertyAssignment(
-                  ts.createIdentifier(cssVariable.name),
+                  ts.createStringLiteral(cssVariable.name),
                   cssVariable.identifier
                 )
               )
